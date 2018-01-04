@@ -68,7 +68,7 @@ POST https://pubsub.googleapis.com/v1/{topic}:publish
 #### Attribute
 | キー     | 値                                                                   | データ型 |
 | ---      | ---                                                                  | ---      |
-| siteType | サイトの判定結果<br>LEGACY : レガシーサイト<br>MODERN : モダンサイト | 文字列   |
+| siteType | サイトの判定結果<br>legacy : レガシーサイト<br>modern : モダンサイト | 文字列   |
 
 \# Cloud Pub/Subの仕様により、文字列以外のデータ型は使用不可
 
@@ -79,7 +79,7 @@ $ gcloud pubsub subscriptions pull {SUBSCRIPTION_NAME} --auto-ack
   ┌───────────────┬────────────────┬─────────────────┐
   │      DATA     │   MESSAGE_ID   │    ATTRIBUTES   │
   ├───────────────┼────────────────┼─────────────────┤
-  │ http:/xxx.com │ xxxxxxxxxxxxxx │ siteType=LEGACY │
+  │ http:/xxx.com │ xxxxxxxxxxxxxx │ siteType=legacy │
   └───────────────┴────────────────┴─────────────────┘
 ```
 
@@ -104,7 +104,7 @@ POST https://pubsub.googleapis.com/v1/{subscription}:pull
       "message": {
         "data": "aHR0cDovL3h4eC5jb20=",
         "attributes": {
-          "siteType": "LEGACY"
+          "siteType": "legacy"
         },
         "messageId": "xxxxxxxxxxxxxxxxx",
         "publishTime": "2018-01-01T08:08:19.993Z"
