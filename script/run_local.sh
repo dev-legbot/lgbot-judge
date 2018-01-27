@@ -1,4 +1,9 @@
 #!/bin/sh -eux
 
+# Exec in local docker container
+# Create Emulators Topic and Subscription, and listhen message.
+
 echo "{}" > /tmp/key.json
-python /judge/app/run.py prepare
+
+sleep 5
+python ../app/run.py prepare

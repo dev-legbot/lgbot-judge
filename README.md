@@ -1,6 +1,14 @@
 # レガシーサイト判定
 サイトの作りを判定してラベル付けを行う
 
+## ローカル実行
+```console
+$ docker-compose up
+# 別ターミナル起動
+$ script/publish_message.sh {MESSAGE}
+```
+
+
 ## インターフェース
 ### 入力
 #### Pub/Subメッセージの構成
