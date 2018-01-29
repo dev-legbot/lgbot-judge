@@ -1,6 +1,30 @@
 # レガシーサイト判定
 サイトの作りを判定してラベル付けを行う
 
+## 環境設定
+1. virtualenv設定
+
+```console
+$ virtualenv env
+```
+
+2. direnv設定
+
+```console
+$ direnv edit .
+```
+
+```.envrc
+source $(pwd)/env/bin/activate
+export PYTHONPATH=$(pwd)/app
+```
+
+## テスト実行
+```console
+$ ./script/test.sh
+```
+
+
 ## ローカル実行
 ```console
 $ docker-compose up
