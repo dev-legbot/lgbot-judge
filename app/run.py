@@ -1,17 +1,18 @@
 import argparse
-import callback
 import config
 import log
-import pubsub
+
+from injector import Injector
 
 
 class App(object):
-    def __init__(self, pubsub_client):
-        self._pubsub_client = pubsub_client
+    def __init__(self, injector):
+        self._injector = injector
+        self._pubsub_client = injector.pubsub_client()
 
     def run(self, args):
         log.logger().info("Start worker ...")
-        cb = callback.Callback()
+        cb = self._injector.callback()
         self._pubsub_client.subscribe(config.SUBSCRIPTION, cb.callback)
 
     def run_with_prepare(self, args):
@@ -30,7 +31,7 @@ def init_command():
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers()
 
-    app = App(pubsub.PubSub())
+    app = App(Injector())
     # トピック作成コマンド
     parser_run_default = subparsers.add_parser(
         "default",
