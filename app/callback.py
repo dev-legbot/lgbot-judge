@@ -1,13 +1,12 @@
 import json
-import log
 
 
 class Callback(object):
-    def __init__(self):
-        pass
+    def __init__(self, injector):
+        self._logger = injector.logger()
 
     def callback(self, message):
-        log.logger().info(message)
+        self._logger.info(message)
         message.ack()
 
     def label_of(self, dom):

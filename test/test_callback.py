@@ -1,11 +1,17 @@
 import unittest
 
 from app import callback
+from test import helper
+
+
+class MockInjector(object):
+    def logger(self):
+        return helper.MockLogger()
 
 
 class TestCallback(unittest.TestCase):
     def setUp(self):
-        self.callback = callback.Callback()
+        self.callback = callback.Callback(MockInjector())
 
     def test_label_of(self):
         got = self.callback.label_of("hogehoge")
