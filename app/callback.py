@@ -6,17 +6,17 @@ class Callback(object):
         self._logger = injector.logger()
 
     def callback(self, message):
-        self._logger.info(message)
+        html_data = self.parse(message.data)
+        self._logger.info(html_data)
         message.ack()
 
     def label_of(self, dom):
         """タグ使用割合をもとにラベルを返す"""
         return "old"
 
-    def parse(self, msg):
+    def parse(self, data):
         """Pub/Subメッセージのパースをする"""
-        # XXX Should be parse to some object not to directory?
-        return json.loads(msg)
+        return json.loads(data)
 
     def publish(self, url, label):
         """Pub/Sumに判定結果をパブリッシュする"""

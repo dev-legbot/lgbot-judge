@@ -19,8 +19,35 @@ class TestCallback(unittest.TestCase):
 
     def test_parse(self):
         msg = '{"hoge": "fuga"}'
+        msg = '''
+        {
+          "url": "http://xxx.com",
+          "doms": [
+            {
+              "count": 1,
+              "name": "div"
+            },
+            {
+              "count": 2,
+              "name": "h1"
+            }
+          ]
+        }
+        '''
         got = self.callback.parse(msg)
-        want = {"hoge": "fuga"}
+        want = {
+            "url": "http://xxx.com",
+            "doms": [
+                {
+                    "count": 1,
+                    "name": "div"
+                },
+                {
+                    "count": 2,
+                    "name": "h1"
+                }
+            ]
+        }
         self.assertEqual(got, want)
 
 
