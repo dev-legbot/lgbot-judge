@@ -1,30 +1,26 @@
-import callback
-import log
+class PubSub(object):
+    def __init__(self, injector):
+        self._publisher_client = injector.publisher_client()
+        self._subscriber_client = injector.subscriber_client()
+        self._logger = injector.logger()
 
-from google.cloud import pubsub
+    def create_topic(self, topic_name):
+        self._publisher_client.create_topic(topic_name)
 
+    def create_subscription(self, topic_name, subscription_name):
+        self._subscriber_client.create_subscription(
+            subscription_name, topic_name,
+        )
 
-def create_topic(topic):
-    publisher = pubsub.PublisherClient()
-    publisher.create_topic(topic)
+    def publish(self, topic_name, message, attribute={}):
+        self._publisher_client.publigh(
+            topic_name, str.encode(message), **attribute)
 
+    def subscribe(self, subscription_name, callback):
+        subscription = self._subscriber_client.subscribe(subscription_name)
+        feature = subscription.open(callback)
 
-def create_subscription(topic, subscription):
-    subscriber = pubsub.SubscriberClient()
-    subscriber.create_subscription(subscription, topic)
-
-
-def publish(topic, message, attribute={}):
-    publisher = pubsub.PublisherClient()
-    publisher.publish(topic, str.encode(message), **attribute)
-
-
-def subscribe(subsc):
-    subscriber = pubsub.SubscriberClient()
-    sub = subscriber.subscribe(subsc)
-    feature = sub.open(callback.judge)
-    try:
-        feature.result()
-    except BaseException as ex:
-        log.logger().error(ex)
-        sub.close()
+        try:
+            feature.result()
+        except BaseException as ex:
+            self._logger.error(ex)
