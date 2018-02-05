@@ -1,6 +1,52 @@
 # レガシーサイト判定
 サイトの作りを判定してラベル付けを行う
 
+## 環境情報
+### 開発ツール等
+* Python 3.6.4
+* [Google CloudSDK](https://cloud.google.com/sdk/?hl=ja)
+
+### 実行環境
+* [Google Kubernetes Engine(GKE)](https://cloud.google.com/kubernetes-engine/?hl=ja)
+
+### ビルド環境
+* [CircleCI](https://circleci.com/)
+
+### 開発環境準備
+1. Python 3.6.4をインストール
+
+2. アプリケーション依存ライブラリを取得
+
+```console
+$ pip install -r {PROJECT_ROOT}/requirements.txt
+```
+
+3. PYTHONPATHをプロジェクトルートに設定(Optional: 開発効率化用)
+
+```console
+$ PYTHONPATH={PROJECT_ROOT}
+```
+
+### テスト実行方法
+```console
+$ {PROJECT_ROOT}/script/test.sh
+```
+
+### その他開発支援ツール
+#### Python関連
+* [pyenv](https://github.com/pyenv/pyenv)
+* [virtualenv](https://github.com/pypa/virtualenv)
+* [direnv](https://github.com/direnv/direnv)
+
+#### Kubernetes関連
+* [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
+* [Docker](https://www.docker.com/)
+* [minikube](https://github.com/kubernetes/minikube)
+
+#### その他
+* [CircleCI CLI](https://circleci.com/docs/2.0/local-jobs/)
+
+
 ## インターフェース
 ### 入力
 #### Pub/Subメッセージの構成
