@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ryutah/gcp-python
+    working_directory: /lgbot-judge
+    steps:
+      - checkout
+      - run:
+          name: Download application dependencies
+          command: "pip install -r /lgbot-judge/requirements.txt"
+      - run:
+          name: Run unit test
+          command: "/lgbot-judge/script/test.sh"

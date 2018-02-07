@@ -1,9 +1,4 @@
-FROM python:alpine3.7
-
-ARG BUILD_DEPS="linux-headers alpine-sdk"
-
-RUN apk add --no-cache ${BUILD_DEPS} \
- && rm -rf /tmp/*
+FROM ryutah/gcp-python
 
 COPY ./requirements.txt /tmp
 
