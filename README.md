@@ -1,36 +1,50 @@
 # レガシーサイト判定
 サイトの作りを判定してラベル付けを行う
 
-## 環境設定
-1. virtualenv設定
+## 環境情報
+### 開発ツール等
+* Python 3.6.4
+* [Google CloudSDK](https://cloud.google.com/sdk/?hl=ja)
+
+### 実行環境
+* [Google Kubernetes Engine(GKE)](https://cloud.google.com/kubernetes-engine/?hl=ja)
+
+### ビルド環境
+* [CircleCI](https://circleci.com/)
+
+### 開発環境準備
+1. Python 3.6.4をインストール
+
+2. アプリケーション依存ライブラリを取得
 
 ```console
-$ virtualenv env
+$ pip install -r {PROJECT_ROOT}/requirements.txt
 ```
 
-2. direnv設定
+3. PYTHONPATHをプロジェクトルートに設定(Optional: 開発効率化用)
 
 ```console
-$ direnv edit .
+$ PYTHONPATH={PROJECT_ROOT}
 ```
 
-```.envrc
-source $(pwd)/env/bin/activate
-export PYTHONPATH=$(pwd)/app
-```
-
-## テスト実行
+### テスト実行方法
 ```console
-$ ./script/test.sh
+$ {PROJECT_ROOT}/script/test.sh
 ```
 
+### その他開発支援ツール
+#### Python関連
+* [pyenv](https://github.com/pyenv/pyenv)
+* [virtualenv](https://github.com/pypa/virtualenv)
+* [direnv](https://github.com/direnv/direnv)
 
-## ローカル実行
-```console
-$ docker-compose up
-# 別ターミナル起動
-$ script/publish_message.sh {MESSAGE}
-```
+#### Kubernetes関連
+* [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
+* [Docker](https://www.docker.com/)
+* [minikube](https://github.com/kubernetes/minikube)
+
+#### その他
+* [CircleCI CLI](https://circleci.com/docs/2.0/local-jobs/)
 
 
 ## インターフェース
