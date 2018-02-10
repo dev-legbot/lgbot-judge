@@ -3,6 +3,8 @@ import injector
 import log
 import unittest
 
+from exceptions import InvalidMessageException
+from receive_messge import ReceiveMessage
 from unittest.mock import MagicMock
 
 
@@ -53,22 +55,16 @@ class TestCallback(unittest.TestCase):
           ]
         }
         '''
+        want = ReceiveMessage({"url": "http://xxx.com", "doms": [{"count": 1, "name": "div"}, {"count": 2, "name": "h1"}]})
         got = cb.parse(msg)
-        want = {
-            "url": "http://xxx.com",
-            "doms": [
-                {
-                    "count": 1,
-                    "name": "div"
-                },
-                {
-                    "count": 2,
-                    "name": "h1"
-                }
-            ]
-        }
-        got = cb.parse(msg)
-        self.assertEqual(got, want)
+        self.assertEqual(got.url, want.url)
+        self.assertEqual(got.doms, want.doms)
+
+    def test_parse_invalid_message(self):
+        msg = '{"foo": "bar"}'
+        cb = TestCallback.new_callback()
+        with self.assertRaises(InvalidMessageException):
+            cb.parse(msg)
 
 
 if __name__ == '__main__':
