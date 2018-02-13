@@ -4,7 +4,7 @@ import log
 import unittest
 
 from exceptions import InvalidMessageException
-from receive_messge import ReceiveMessage
+from received_messge import ReceivedMessage
 from unittest.mock import MagicMock
 
 
@@ -55,7 +55,8 @@ class TestCallback(unittest.TestCase):
           ]
         }
         '''
-        want = ReceiveMessage({"url": "http://xxx.com", "doms": [{"count": 1, "name": "div"}, {"count": 2, "name": "h1"}]})
+        want = ReceivedMessage(
+            {"url": "http://xxx.com", "doms": [{"count": 1, "name": "div"}, {"count": 2, "name": "h1"}]})
         got = cb.parse(msg)
         self.assertEqual(got.url, want.url)
         self.assertEqual(got.doms, want.doms)

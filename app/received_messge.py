@@ -1,7 +1,7 @@
 import exceptions
 
 
-class ReceiveMessage(object):
+class ReceivedMessage(object):
     """Values class of message is received from cloud pub/sub
 
     Attributes:
@@ -21,7 +21,7 @@ class ReceiveMessage(object):
         Raises:
             exceptions.InvalidMessageException: The message_dict is not valid.
         """
-        h = ReceiveMessage(message_dict)
+        h = ReceivedMessage(message_dict)
         h.validate()
         return h
 

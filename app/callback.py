@@ -1,7 +1,7 @@
 import json
 
 from exceptions import InvalidMessageException
-from receive_messge import ReceiveMessage
+from received_messge import ReceivedMessage
 
 
 class Callback(object):
@@ -32,7 +32,7 @@ class Callback(object):
             exceptions.InvalidMessageException: Failed to parse message.
         """
         parsed_data = json.loads(data)
-        return ReceiveMessage.from_dict(parsed_data)
+        return ReceivedMessage.from_dict(parsed_data)
 
     def publish(self, url, label):
         """Pub/Sumに判定結果をパブリッシュする"""
