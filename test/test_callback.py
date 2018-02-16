@@ -1,6 +1,5 @@
 import callback
-import injector
-import log
+import config
 import unittest
 
 from exceptions import InvalidMessageException
@@ -9,28 +8,32 @@ from unittest.mock import MagicMock
 
 
 class TestCallback(unittest.TestCase):
-    def new_callback(i_mock=injector.Injector()):
-        l_mock = log.Logger()
-        i_mock.logger = MagicMock(return_value=l_mock)
-        return callback.Callback(i_mock)
+    def default_injector():
+        return MagicMock()
+
+    def new_callback():
+        return callback.Callback(TestCallback.default_injector())
 
     def test_callback(self):
-        l_mock = log.Logger()
-        l_mock.info = MagicMock()
-        i_mock = injector.Injector()
-        i_mock.logger = MagicMock(return_value=l_mock)
-        cb = callback.Callback(i_mock)
+        cb = TestCallback.new_callback()
 
-        parse_mock = MagicMock(return_value="parsed")
+        parsed_msg = ReceivedMessage(message_dict={"url": "http://xxx.com", "doms": [{"tag": "div", "count": 1}]})
+        parse_mock = MagicMock(return_value=parsed_msg)
         cb.parse = parse_mock
+
+        label_of_mock = MagicMock(return_value="old")
+        cb.label_of = label_of_mock
+
+        publish_mock = MagicMock()
+        cb.publish = publish_mock
 
         msg_mock = MagicMock()
         msg_mock.data = "test"
-
         cb.callback(msg_mock)
 
         parse_mock.assert_called_with("test")
-        l_mock.info.assert_called_with("parsed")
+        label_of_mock.assert_called_with(parsed_msg.doms)
+        publish_mock.assert_called_with("http://xxx.com", "old")
         msg_mock.ack.assert_called()
 
     def test_label_of(self):
@@ -66,6 +69,17 @@ class TestCallback(unittest.TestCase):
         cb = TestCallback.new_callback()
         with self.assertRaises(InvalidMessageException):
             cb.parse(msg)
+
+    def test_publish(self):
+        i_mock = TestCallback.default_injector()
+
+        pubsub_mock = MagicMock()
+        i_mock.pubsub_client = MagicMock(return_value=pubsub_mock)
+
+        cb = callback.Callback(i_mock)
+        cb.publish("url", "old")
+
+        pubsub_mock.publish.assert_called_with(config.TOPIC, "url", attribute={"label": "old"})
 
 
 if __name__ == '__main__':
