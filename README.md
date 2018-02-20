@@ -1,6 +1,8 @@
 # レガシーサイト判定
 サイトの作りを判定してラベル付けを行う
 
+![CircleCI](https://circleci.com/gh/trash-dev-camp/lgbot-judge.svg?style=shield)
+
 ## 環境情報
 ### 開発ツール等
 * Python 3.6.4
