@@ -1,3 +1,4 @@
+import config
 import json
 
 from exceptions import InvalidMessageException
@@ -7,11 +8,14 @@ from received_messge import ReceivedMessage
 class Callback(object):
     def __init__(self, injector):
         self._logger = injector.logger()
+        self._pubsub_client = injector.pubsub_client()
 
     def callback(self, message):
         try:
             html_data = self.parse(message.data)
             self._logger.info(html_data)
+            label = self.label_of(html_data.doms)
+            self.publish(html_data.url, label)
             message.ack()
         except InvalidMessageException as ex:
             self._logger.warning("Invalid message : %s", ex)
@@ -35,9 +39,13 @@ class Callback(object):
         return ReceivedMessage.from_dict(parsed_data)
 
     def publish(self, url, label):
-        """Pub/Sumに判定結果をパブリッシュする"""
-        # XXX Cloud Pub/Sub client shoud be inject by constructor.
-        pass
+        """Publish message to Pub/Sub topic
+
+        Args:
+            url(str): Site url.
+            label(str): Site label.
+        """
+        self._pubsub_client.publish(config.TOPIC, url, attribute={"label": label})
 
     def store_to_bigquery(self, url, label):
         """BigQueryに判定結果を保存する"""
