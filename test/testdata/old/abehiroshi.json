@@ -1,0 +1,89 @@
+{
+  "doms": [
+    {
+      "count": 1,
+      "name": "style"
+    },
+    {
+      "count": 1,
+      "name": "noframes"
+    },
+    {
+      "count": 1,
+      "name": "img"
+    },
+    {
+      "count": 1,
+      "name": "h1"
+    },
+    {
+      "count": 1,
+      "name": "frameset"
+    },
+    {
+      "count": 2,
+      "name": "html"
+    },
+    {
+      "count": 2,
+      "name": "div"
+    },
+    {
+      "count": 2,
+      "name": "body"
+    },
+    {
+      "count": 2,
+      "name": "frame"
+    },
+    {
+      "count": 3,
+      "name": "hr"
+    },
+    {
+      "count": 3,
+      "name": "title"
+    },
+    {
+      "count": 3,
+      "name": "head"
+    },
+    {
+      "count": 5,
+      "name": "meta"
+    },
+    {
+      "count": 7,
+      "name": "font"
+    },
+    {
+      "count": 8,
+      "name": "strong"
+    },
+    {
+      "count": 11,
+      "name": "table"
+    },
+    {
+      "count": 11,
+      "name": "p"
+    },
+    {
+      "count": 14,
+      "name": "a"
+    },
+    {
+      "count": 32,
+      "name": "tr"
+    },
+    {
+      "count": 42,
+      "name": "br"
+    },
+    {
+      "count": 74,
+      "name": "td"
+    }
+  ],
+  "url": "http://abehiroshi.la.coocan.jp/"
+}

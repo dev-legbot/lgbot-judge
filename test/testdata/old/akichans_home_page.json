@@ -1,0 +1,81 @@
+{
+  "doms": [
+    {
+      "count": 1,
+      "name": "html"
+    },
+    {
+      "count": 1,
+      "name": "body"
+    },
+    {
+      "count": 1,
+      "name": "h2"
+    },
+    {
+      "count": 1,
+      "name": "head"
+    },
+    {
+      "count": 1,
+      "name": "title"
+    },
+    {
+      "count": 1,
+      "name": "marquee"
+    },
+    {
+      "count": 2,
+      "name": "meta"
+    },
+    {
+      "count": 3,
+      "name": "br"
+    },
+    {
+      "count": 3,
+      "name": "caption"
+    },
+    {
+      "count": 3,
+      "name": "center"
+    },
+    {
+      "count": 3,
+      "name": "div"
+    },
+    {
+      "count": 3,
+      "name": "table"
+    },
+    {
+      "count": 12,
+      "name": "p"
+    },
+    {
+      "count": 46,
+      "name": "tr"
+    },
+    {
+      "count": 77,
+      "name": "img"
+    },
+    {
+      "count": 97,
+      "name": "a"
+    },
+    {
+      "count": 287,
+      "name": "strong"
+    },
+    {
+      "count": 311,
+      "name": "font"
+    },
+    {
+      "count": 465,
+      "name": "td"
+    }
+  ],
+  "url": "http://www2u.biglobe.ne.jp/~akichan/"
+}

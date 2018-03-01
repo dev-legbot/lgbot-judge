@@ -1,0 +1,85 @@
+{
+  "doms": [
+    {
+      "count": 1,
+      "name": "input"
+    },
+    {
+      "count": 1,
+      "name": "nav"
+    },
+    {
+      "count": 1,
+      "name": "title"
+    },
+    {
+      "count": 1,
+      "name": "html"
+    },
+    {
+      "count": 1,
+      "name": "head"
+    },
+    {
+      "count": 1,
+      "name": "ul"
+    },
+    {
+      "count": 1,
+      "name": "h1"
+    },
+    {
+      "count": 1,
+      "name": "body"
+    },
+    {
+      "count": 2,
+      "name": "br"
+    },
+    {
+      "count": 2,
+      "name": "label"
+    },
+    {
+      "count": 5,
+      "name": "meta"
+    },
+    {
+      "count": 5,
+      "name": "h2"
+    },
+    {
+      "count": 7,
+      "name": "li"
+    },
+    {
+      "count": 7,
+      "name": "link"
+    },
+    {
+      "count": 7,
+      "name": "p"
+    },
+    {
+      "count": 7,
+      "name": "script"
+    },
+    {
+      "count": 11,
+      "name": "a"
+    },
+    {
+      "count": 25,
+      "name": "div"
+    },
+    {
+      "count": 51,
+      "name": "img"
+    },
+    {
+      "count": 56,
+      "name": "span"
+    }
+  ],
+  "url": "http://www.adeahome.co.jp/"
+}
