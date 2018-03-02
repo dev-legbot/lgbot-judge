@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: judge-deployment
@@ -7,8 +7,6 @@ metadata:
 
 spec:
   replicas: 1
-  strategy:
-    type: RollingUpdate
   selector:
     matchLabels:
       app: judge-template
@@ -19,7 +17,11 @@ spec:
     spec:
       containers:
       - name: judge
-        image: gcr.io/$PROJECT_ID/judge:$BUILD_ID
+        image: ${DOCKER_IMAGE}
         env:
           - name: PROJECT_ID
-            value: $PROJECT_ID
+            value: ${PROJECT_ID}
+          - name: SUBSCRIPTION_NAME
+            value: ${SUBSCRIPTION_NAME}
+          - name: TOPIC_NAME
+            value: ${TOPIC_NAME}

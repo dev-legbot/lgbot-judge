@@ -1,6 +1,24 @@
 version: 2
+
+references:
+  build_docker: &build_docker
+    docker:
+      - image: gcr.io/dev-ryutah/lgbot-judge-builder:20180302
+        auth:
+          username: _json_key
+          password: $GOOGLE_AUTH_KEY
+  auth_steps:
+    - output_auth_key: &output_auth_key
+        name: output google auth key
+        command: "echo ${GOOGLE_AUTH_KEY} > /key.json"
+    - activate_account: &activate_account
+        name: activate google auth
+        command: |
+          echo ${GOOGLE_AUTH_KEY} > /key.json
+          gcloud auth activate-service-account --key-file /key.json
+
 jobs:
-  build:
+  test:
     docker:
       - image: ryutah/gcp-python
     working_directory: /lgbot-judge
@@ -12,3 +30,52 @@ jobs:
       - run:
           name: Run unit test
           command: "/lgbot-judge/script/test.sh"
+
+  build-docker:
+    <<: *build_docker
+    working_directory: /lgbot-judge
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          <<: *output_auth_key
+      - run:
+          <<: *activate_account
+      - run:
+          name: build docker image
+          command: "/lgbot-judge/.circleci/build_image.sh"
+      - run:
+          name: push docker image
+          command: |
+            docker_tag=gcr.io/${PROJECT_ID}/${IMAGE_NAME}
+            gcloud docker -- push ${docker_tag}
+
+  deploy:
+    <<: *build_docker
+    working_directory: /lgbot-judge
+    steps:
+      - checkout
+      - run:
+          <<: *output_auth_key
+      - run:
+          <<: *activate_account
+      - run:
+          name: deploy kubernetes deployments
+          command: "/lgbot-judge/.circleci/deploy.sh"
+
+workflows:
+  version: 2
+  test_to_deploy:
+    jobs:
+      - test
+      - build-docker:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+            tags:
+              ignore: /.*/
+      - deploy:
+          requires:
+            - build-docker
