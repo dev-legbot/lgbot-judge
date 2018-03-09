@@ -19,9 +19,20 @@ spec:
       - name: judge
         image: ${DOCKER_IMAGE}
         env:
+          # Application Config
           - name: PROJECT_ID
             value: ${PROJECT_ID}
           - name: SUBSCRIPTION_NAME
             value: ${SUBSCRIPTION_NAME}
           - name: TOPIC_NAME
             value: ${TOPIC_NAME}
+          - name: BQ_DATASET
+            value: ${BQ_DATASET}
+          - name: BQ_TABLE
+            value: ${BQ_TABLE}
+
+          # GCP Credentials config
+          - name: GOOGLE_CLOUD_PROJECT
+            value: ${PROJECT_ID}
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: /judge/key.json

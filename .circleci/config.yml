@@ -3,7 +3,8 @@ version: 2
 references:
   build_docker: &build_docker
     docker:
-      - image: gcr.io/dev-ryutah/lgbot-judge-builder:20180302
+      # XXX ホントはタグ指定した方がいいけどとりあえずこれで
+      - image: gcr.io/${PROJECT_ID}/lgbot-judge-builder 
         auth:
           username: _json_key
           password: $GOOGLE_AUTH_KEY
@@ -41,6 +42,9 @@ jobs:
           <<: *output_auth_key
       - run:
           <<: *activate_account
+      - run:
+          name: create gcp credentials
+          command: echo $CONTAINER_CREDENTIAL > /lgbot-judge/key.json
       - run:
           name: build docker image
           command: "/lgbot-judge/.circleci/build_image.sh"
