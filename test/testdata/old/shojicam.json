@@ -1,0 +1,69 @@
+{
+  "doms": [
+    {
+      "count": 1,
+      "name": "div"
+    },
+    {
+      "count": 1,
+      "name": "map"
+    },
+    {
+      "count": 1,
+      "name": "title"
+    },
+    {
+      "count": 2,
+      "name": "a"
+    },
+    {
+      "count": 2,
+      "name": "body"
+    },
+    {
+      "count": 2,
+      "name": "head"
+    },
+    {
+      "count": 2,
+      "name": "img"
+    },
+    {
+      "count": 2,
+      "name": "noframes"
+    },
+    {
+      "count": 2,
+      "name": "p"
+    },
+    {
+      "count": 2,
+      "name": "table"
+    },
+    {
+      "count": 3,
+      "name": "frameset"
+    },
+    {
+      "count": 3,
+      "name": "td"
+    },
+    {
+      "count": 3,
+      "name": "tr"
+    },
+    {
+      "count": 5,
+      "name": "frame"
+    },
+    {
+      "count": 5,
+      "name": "meta"
+    },
+    {
+      "count": 6,
+      "name": "area"
+    }
+  ],
+  "url": "http://shojicam.com/"
+}

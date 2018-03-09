@@ -1,0 +1,157 @@
+{
+  "doms": [
+    {
+      "count": 1,
+      "name": "video"
+    },
+    {
+      "count": 1,
+      "name": "small"
+    },
+    {
+      "count": 1,
+      "name": "source"
+    },
+    {
+      "count": 1,
+      "name": "noscript"
+    },
+    {
+      "count": 1,
+      "name": "nav"
+    },
+    {
+      "count": 1,
+      "name": "main"
+    },
+    {
+      "count": 1,
+      "name": "iframe"
+    },
+    {
+      "count": 1,
+      "name": "header"
+    },
+    {
+      "count": 1,
+      "name": "head"
+    },
+    {
+      "count": 1,
+      "name": "html"
+    },
+    {
+      "count": 1,
+      "name": "h1"
+    },
+    {
+      "count": 1,
+      "name": "footer"
+    },
+    {
+      "count": 1,
+      "name": "button"
+    },
+    {
+      "count": 1,
+      "name": "body"
+    },
+    {
+      "count": 4,
+      "name": "h3"
+    },
+    {
+      "count": 4,
+      "name": "h2"
+    },
+    {
+      "count": 5,
+      "name": "strong"
+    },
+    {
+      "count": 5,
+      "name": "ul"
+    },
+    {
+      "count": 6,
+      "name": "h4"
+    },
+    {
+      "count": 6,
+      "name": "script"
+    },
+    {
+      "count": 8,
+      "name": "title"
+    },
+    {
+      "count": 9,
+      "name": "symbol"
+    },
+    {
+      "count": 10,
+      "name": "link"
+    },
+    {
+      "count": 11,
+      "name": "svg"
+    },
+    {
+      "count": 12,
+      "name": "section"
+    },
+    {
+      "count": 12,
+      "name": "path"
+    },
+    {
+      "count": 13,
+      "name": "meta"
+    },
+    {
+      "count": 15,
+      "name": "a"
+    },
+    {
+      "count": 16,
+      "name": "br"
+    },
+    {
+      "count": 17,
+      "name": "use"
+    },
+    {
+      "count": 19,
+      "name": "li"
+    },
+    {
+      "count": 28,
+      "name": "img"
+    },
+    {
+      "count": 32,
+      "name": "p"
+    },
+    {
+      "count": 35,
+      "name": "rt"
+    },
+    {
+      "count": 35,
+      "name": "ruby"
+    },
+    {
+      "count": 44,
+      "name": "span"
+    },
+    {
+      "count": 70,
+      "name": "rp"
+    },
+    {
+      "count": 145,
+      "name": "div"
+    }
+  ],
+  "url": "https://www.jal.com/ja/csr/soraiku/steamschool/"
+}

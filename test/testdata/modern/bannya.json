@@ -1,0 +1,121 @@
+{
+  "doms": [
+    {
+      "count": 1,
+      "name": "video"
+    },
+    {
+      "count": 1,
+      "name": "noscript"
+    },
+    {
+      "count": 1,
+      "name": "style"
+    },
+    {
+      "count": 1,
+      "name": "iframe"
+    },
+    {
+      "count": 1,
+      "name": "header"
+    },
+    {
+      "count": 1,
+      "name": "head"
+    },
+    {
+      "count": 1,
+      "name": "footer"
+    },
+    {
+      "count": 1,
+      "name": "html"
+    },
+    {
+      "count": 1,
+      "name": "title"
+    },
+    {
+      "count": 1,
+      "name": "button"
+    },
+    {
+      "count": 1,
+      "name": "body"
+    },
+    {
+      "count": 1,
+      "name": "article"
+    },
+    {
+      "count": 3,
+      "name": "h1"
+    },
+    {
+      "count": 3,
+      "name": "source"
+    },
+    {
+      "count": 5,
+      "name": "section"
+    },
+    {
+      "count": 6,
+      "name": "h2"
+    },
+    {
+      "count": 8,
+      "name": "nav"
+    },
+    {
+      "count": 11,
+      "name": "ul"
+    },
+    {
+      "count": 12,
+      "name": "figure"
+    },
+    {
+      "count": 12,
+      "name": "script"
+    },
+    {
+      "count": 17,
+      "name": "link"
+    },
+    {
+      "count": 21,
+      "name": "meta"
+    },
+    {
+      "count": 25,
+      "name": "br"
+    },
+    {
+      "count": 40,
+      "name": "p"
+    },
+    {
+      "count": 44,
+      "name": "span"
+    },
+    {
+      "count": 46,
+      "name": "img"
+    },
+    {
+      "count": 46,
+      "name": "li"
+    },
+    {
+      "count": 54,
+      "name": "div"
+    },
+    {
+      "count": 83,
+      "name": "a"
+    }
+  ],
+  "url": "https://www.banya-group.jp/"
+}

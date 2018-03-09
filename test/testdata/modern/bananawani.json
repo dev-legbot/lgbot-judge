@@ -1,0 +1,89 @@
+{
+  "doms": [
+    {
+      "count": 1,
+      "name": "html"
+    },
+    {
+      "count": 1,
+      "name": "body"
+    },
+    {
+      "count": 1,
+      "name": "nav"
+    },
+    {
+      "count": 1,
+      "name": "footer"
+    },
+    {
+      "count": 1,
+      "name": "h1"
+    },
+    {
+      "count": 1,
+      "name": "head"
+    },
+    {
+      "count": 1,
+      "name": "header"
+    },
+    {
+      "count": 1,
+      "name": "title"
+    },
+    {
+      "count": 6,
+      "name": "h3"
+    },
+    {
+      "count": 6,
+      "name": "link"
+    },
+    {
+      "count": 8,
+      "name": "meta"
+    },
+    {
+      "count": 11,
+      "name": "script"
+    },
+    {
+      "count": 11,
+      "name": "ul"
+    },
+    {
+      "count": 11,
+      "name": "h2"
+    },
+    {
+      "count": 13,
+      "name": "p"
+    },
+    {
+      "count": 20,
+      "name": "br"
+    },
+    {
+      "count": 41,
+      "name": "img"
+    },
+    {
+      "count": 42,
+      "name": "span"
+    },
+    {
+      "count": 43,
+      "name": "a"
+    },
+    {
+      "count": 44,
+      "name": "div"
+    },
+    {
+      "count": 47,
+      "name": "li"
+    }
+  ],
+  "url": "http://bananawani.jp/"
+}

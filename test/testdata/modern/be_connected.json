@@ -1,0 +1,137 @@
+{
+  "doms": [
+    {
+      "count": 1,
+      "name": "video"
+    },
+    {
+      "count": 1,
+      "name": "source"
+    },
+    {
+      "count": 1,
+      "name": "noscript"
+    },
+    {
+      "count": 1,
+      "name": "nav"
+    },
+    {
+      "count": 1,
+      "name": "main"
+    },
+    {
+      "count": 1,
+      "name": "header"
+    },
+    {
+      "count": 1,
+      "name": "head"
+    },
+    {
+      "count": 1,
+      "name": "g"
+    },
+    {
+      "count": 1,
+      "name": "html"
+    },
+    {
+      "count": 1,
+      "name": "address"
+    },
+    {
+      "count": 1,
+      "name": "title"
+    },
+    {
+      "count": 1,
+      "name": "defs"
+    },
+    {
+      "count": 1,
+      "name": "body"
+    },
+    {
+      "count": 1,
+      "name": "copyright"
+    },
+    {
+      "count": 1,
+      "name": "footer"
+    },
+    {
+      "count": 2,
+      "name": "figure"
+    },
+    {
+      "count": 2,
+      "name": "br"
+    },
+    {
+      "count": 2,
+      "name": "section"
+    },
+    {
+      "count": 2,
+      "name": "svg"
+    },
+    {
+      "count": 2,
+      "name": "iframe"
+    },
+    {
+      "count": 2,
+      "name": "ul"
+    },
+    {
+      "count": 3,
+      "name": "span"
+    },
+    {
+      "count": 3,
+      "name": "link"
+    },
+    {
+      "count": 4,
+      "name": "h2"
+    },
+    {
+      "count": 5,
+      "name": "path"
+    },
+    {
+      "count": 6,
+      "name": "object"
+    },
+    {
+      "count": 8,
+      "name": "script"
+    },
+    {
+      "count": 10,
+      "name": "li"
+    },
+    {
+      "count": 15,
+      "name": "meta"
+    },
+    {
+      "count": 26,
+      "name": "p"
+    },
+    {
+      "count": 31,
+      "name": "img"
+    },
+    {
+      "count": 37,
+      "name": "a"
+    },
+    {
+      "count": 44,
+      "name": "div"
+    }
+  ],
+  "url": "https://biz.kddi.com/beconnected/"
+}
