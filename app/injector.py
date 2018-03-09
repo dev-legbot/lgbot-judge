@@ -1,3 +1,5 @@
+import config
+
 from google.cloud import bigquery
 from google.cloud import pubsub
 
@@ -31,7 +33,7 @@ class Injector(object):
 
     def __init_bigquery(self):
         self.__bigquery_client = bigquery.Client()
-        dataset_ref = self.__bigquery_client.Dataset("")
+        dataset_ref = self.__bigquery_client.Dataset(config.BQ_DATASET)
         dataset = bigquery.Dataset(dataset_ref)
-        table_ref = dataset.table("")
+        table_ref = dataset.table(config.BQ_TABLE)
         self.__table = bigquery.Table(table_ref)
