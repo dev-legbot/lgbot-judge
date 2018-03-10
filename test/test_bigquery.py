@@ -13,7 +13,7 @@ class TestBigQuery(unittest.TestCase):
         cb.insert_judge_result("url", "label")
 
         client_mock.insert_rows.assert_called_with(
-            table_mock, {"url": "url", "label": "label"}
+            table_mock, [("url", "label")]
         )
 
 
