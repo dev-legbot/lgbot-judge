@@ -12,5 +12,11 @@ class BigQuery(object):
         self._table = table
 
     def insert_judge_result(self, url, label):
+        """Insert judge result row to BigQuery
+
+        Args:
+            url(str): Site URL.
+            label(str): Label of site.
+        """
         rows = [(url, label)]
         self._client.insert_rows(self._table, rows)

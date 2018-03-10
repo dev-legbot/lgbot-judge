@@ -1,6 +1,5 @@
 import argparse
 import config
-import log
 
 from injector import Injector
 
@@ -8,7 +7,7 @@ from injector import Injector
 class App(object):
     def __init__(self, injector):
         self._injector = injector
-        self._pubsub_client = injector.pubsub_client()
+        self._pubsub_client = injector.pubsub()
         self._logger = injector.logger(__name__)
 
     def run(self, args):

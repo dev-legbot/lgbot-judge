@@ -1,7 +1,7 @@
 import sys
 
-from logging import getLogger
 from logging import Formatter
+from logging import getLogger
 from logging import INFO
 from logging import StreamHandler
 

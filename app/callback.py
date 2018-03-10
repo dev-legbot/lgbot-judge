@@ -6,17 +6,22 @@ from received_messge import ReceivedMessage
 
 
 class Callback(object):
-    def __init__(self, injector):
-        self._logger = injector.logger(__name__)
-        self._pubsub_client = injector.pubsub_client()
-        self._bigquery_client = injector.bigquery()
+    def __init__(self, logger, pubsub_client, bigquery_client):
+        self._logger = logger
+        self._pubsub_client = pubsub_client
+        self._bigquery_client = bigquery_client
 
     def callback(self, message):
+        """Callback function receive message
+
+        Args:
+            message: Receive message.
+        """
         try:
-            html_data = self.parse(message.data)
+            html_data = self._parse(message.data)
             self._logger.info(html_data)
-            label = self.label_of(html_data.doms)
-            self.publish(html_data.url, label)
+            label = self._label_of(html_data.doms)
+            self._publish(html_data.url, label)
             message.ack()
             self._store_to_bigquery(html_data.url, label)
         except InvalidMessageException as ex:
@@ -24,7 +29,7 @@ class Callback(object):
         except Exception as ex:
             self._logger.error("Some error raises : %s", ex)
 
-    def label_of(self, dom):
+    def _label_of(self, dom):
         """Labeling site
 
         Args:
@@ -46,7 +51,7 @@ class Callback(object):
         judged_tag_sum = sum([d["count"] for d in judged_tag_counts])
         return "old" if judged_tag_sum / tag_cnt >= config.TAG_USE_RATE_FOR_OLD_SITE else "modern"
 
-    def parse(self, data):
+    def _parse(self, data):
         """Parse json string to ReceiveMessage object
 
         Args:
@@ -58,7 +63,7 @@ class Callback(object):
         parsed_data = json.loads(data)
         return ReceivedMessage.from_dict(parsed_data)
 
-    def publish(self, url, label):
+    def _publish(self, url, label):
         """Publish message to Pub/Sub topic
 
         Args:

@@ -10,27 +10,24 @@ from unittest.mock import MagicMock
 
 
 class TestCallback(unittest.TestCase):
-    def default_injector():
-        return MagicMock()
-
-    def new_callback():
-        return callback.Callback(TestCallback.default_injector())
+    def create_callback_with_mock(logger_mock=MagicMock(), pubsub_mock=MagicMock(), bigquery_mock=MagicMock()):
+        return callback.Callback(logger_mock, pubsub_mock, bigquery_mock)
 
     def test_callback(self):
-        cb = TestCallback.new_callback()
+        cb = TestCallback.create_callback_with_mock()
 
         parsed_msg = ReceivedMessage(
             message_dict={"url": "http://xxx.com",
                           "doms": [{"tag": "div", "count": 1}]}
         )
         parse_mock = MagicMock(return_value=parsed_msg)
-        cb.parse = parse_mock
+        cb._parse = parse_mock
 
         label_of_mock = MagicMock(return_value="old")
-        cb.label_of = label_of_mock
+        cb._label_of = label_of_mock
 
         publish_mock = MagicMock()
-        cb.publish = publish_mock
+        cb._publish = publish_mock
 
         msg_mock = MagicMock()
         msg_mock.data = "test"
@@ -47,21 +44,21 @@ class TestCallback(unittest.TestCase):
         bigquery_mock.assert_called_with("http://xxx.com", "old")
 
     def test_label_of_old_site(self):
-        cb = TestCallback.new_callback()
+        cb = TestCallback.create_callback_with_mock()
         for old_site in old_site_testdatas():
             msg = ReceivedMessage.from_dict(old_site)
-            got = cb.label_of(msg.doms)
+            got = cb._label_of(msg.doms)
             self.assertEqual(got, "old")
 
     def test_label_of_modern_site(self):
-        cb = TestCallback.new_callback()
+        cb = TestCallback.create_callback_with_mock()
         for modern_site in modern_site_testdatas():
             msg = ReceivedMessage.from_dict(modern_site)
-            got = cb.label_of(msg.doms)
+            got = cb._label_of(msg.doms)
             self.assertEqual(got, "modern")
 
     def test_parse(self):
-        cb = TestCallback.new_callback()
+        cb = TestCallback.create_callback_with_mock()
         msg = '''
         {
           "url": "http://xxx.com",
@@ -81,27 +78,25 @@ class TestCallback(unittest.TestCase):
             {"url": "http://xxx.com",
                 "doms": [{"count": 1, "name": "div"}, {"count": 2, "name": "h1"}]}
         )
-        got = cb.parse(msg)
+        got = cb._parse(msg)
         self.assertEqual(got.url, want.url)
         self.assertEqual(got.doms, want.doms)
 
     def test_parse_invalid_message(self):
         msg = '{"foo": "bar"}'
-        cb = TestCallback.new_callback()
+        cb = TestCallback.create_callback_with_mock()
         with self.assertRaises(InvalidMessageException):
-            cb.parse(msg)
+            cb._parse(msg)
 
     def test_publish(self):
-        i_mock = TestCallback.default_injector()
-
         pubsub_mock = MagicMock()
-        i_mock.pubsub_client = MagicMock(return_value=pubsub_mock)
+        cb = TestCallback.create_callback_with_mock(pubsub_mock=pubsub_mock)
 
-        cb = callback.Callback(i_mock)
-        cb.publish("url", "old")
+        cb._publish("url", "old")
 
         pubsub_mock.publish.assert_called_with(
-            config.TOPIC, "url", attribute={"label": "old"})
+            config.TOPIC, "url", attribute={"label": "old"}
+        )
 
 
 def old_site_testdatas():

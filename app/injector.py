@@ -11,29 +11,36 @@ from pubsub import PubSub
 
 class Injector(object):
     def __init__(self):
-        self.__init_bigquery()
+        self._init_pubsub()
+        self._init_bigquery()
 
     def bigquery(self):
-        return bq.BigQuery(self.__bigquery_client, self.__table)
+        return bq.BigQuery(self._bigquery_client, self._table)
 
     def callback(self):
-        return Callback(self)
+        return Callback(
+            self.logger(Callback.__name__),
+            self.pubsub(),
+            self.bigquery(),
+        )
 
     def logger(self, name):
         return Logger(name)
 
-    def pubsub_client(self):
-        return PubSub(self)
+    def pubsub(self):
+        return PubSub(
+            self.logger(PubSub.__name__),
+            self._publisher_client,
+            self._subscriber_client,
+        )
 
-    def publisher_client(self):
-        return pubsub.PublisherClient()
+    def _init_pubsub(self):
+        self._publisher_client = pubsub.PublisherClient()
+        self._subscriber_client = pubsub.SubscriberClient()
 
-    def subscriber_client(self):
-        return pubsub.SubscriberClient()
-
-    def __init_bigquery(self):
-        self.__bigquery_client = bigquery.Client()
-        dataset_ref = self.__bigquery_client.dataset(config.BQ_DATASET)
+    def _init_bigquery(self):
+        self._bigquery_client = bigquery.Client()
+        dataset_ref = self._bigquery_client.dataset(config.BQ_DATASET)
         dataset = bigquery.Dataset(dataset_ref)
         table_ref = dataset.table(config.BQ_TABLE)
-        self.__table = bigquery.Table(table_ref, bq.TABLE_SCHEMA)
+        self._table = bigquery.Table(table_ref, bq.TABLE_SCHEMA)
