@@ -1,17 +1,32 @@
 import sys
 
 from logging import getLogger
+from logging import Formatter
 from logging import INFO
 from logging import StreamHandler
 
 
+loggers = {}
+
+
 class Logger(object):
-    def __init__(self):
-        self._log = getLogger(__name__)
-        self._log.setLevel(INFO)
-        self._log.flush = sys.stdout.flush
+    def __init__(self, name):
+        global loggers
+
+        if loggers.get(name):
+            self._log = loggers.get(name)
+            return
+
+        logger = getLogger(name)
+        logger.setLevel(INFO)
+        logger.flush = sys.stdout.flush
         handler = StreamHandler(sys.stdout)
-        self._log.addHandler(handler)
+        formatter = Formatter("%(asctime)s %(levelname)s %(message)s")
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+
+        loggers.update(dict(name=logger))
+        self._log = logger
 
     def debug(self, msg, *arg, **kwards):
         self._log.debug(msg, *arg, **kwards)

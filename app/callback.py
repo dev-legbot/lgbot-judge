@@ -7,7 +7,7 @@ from received_messge import ReceivedMessage
 
 class Callback(object):
     def __init__(self, injector):
-        self._logger = injector.logger()
+        self._logger = injector.logger(__name__)
         self._pubsub_client = injector.pubsub_client()
         self._bigquery_client = injector.bigquery()
 

@@ -9,9 +9,10 @@ class App(object):
     def __init__(self, injector):
         self._injector = injector
         self._pubsub_client = injector.pubsub_client()
+        self._logger = injector.logger(__name__)
 
     def run(self, args):
-        log.logger().info("Start worker ...")
+        self._logger.info("Start worker ...")
         cb = self._injector.callback()
         self._pubsub_client.subscribe(config.SUBSCRIPTION, cb.callback)
 
