@@ -20,7 +20,8 @@ class TestCallback(unittest.TestCase):
         cb = TestCallback.new_callback()
 
         parsed_msg = ReceivedMessage(
-            message_dict={"url": "http://xxx.com", "doms": [{"tag": "div", "count": 1}]}
+            message_dict={"url": "http://xxx.com",
+                          "doms": [{"tag": "div", "count": 1}]}
         )
         parse_mock = MagicMock(return_value=parsed_msg)
         cb.parse = parse_mock
@@ -33,12 +34,17 @@ class TestCallback(unittest.TestCase):
 
         msg_mock = MagicMock()
         msg_mock.data = "test"
+
+        bigquery_mock = MagicMock()
+        cb._store_to_bigquery = bigquery_mock
+
         cb.callback(msg_mock)
 
         parse_mock.assert_called_with("test")
         label_of_mock.assert_called_with(parsed_msg.doms)
         publish_mock.assert_called_with("http://xxx.com", "old")
         msg_mock.ack.assert_called()
+        bigquery_mock.assert_called_with("http://xxx.com", "old")
 
     def test_label_of_old_site(self):
         cb = TestCallback.new_callback()
@@ -72,7 +78,8 @@ class TestCallback(unittest.TestCase):
         }
         '''
         want = ReceivedMessage(
-            {"url": "http://xxx.com", "doms": [{"count": 1, "name": "div"}, {"count": 2, "name": "h1"}]}
+            {"url": "http://xxx.com",
+                "doms": [{"count": 1, "name": "div"}, {"count": 2, "name": "h1"}]}
         )
         got = cb.parse(msg)
         self.assertEqual(got.url, want.url)

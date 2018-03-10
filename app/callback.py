@@ -9,6 +9,7 @@ class Callback(object):
     def __init__(self, injector):
         self._logger = injector.logger()
         self._pubsub_client = injector.pubsub_client()
+        self._bigquery_client = injector.bigquery()
 
     def callback(self, message):
         try:
@@ -17,6 +18,7 @@ class Callback(object):
             label = self.label_of(html_data.doms)
             self.publish(html_data.url, label)
             message.ack()
+            self._store_to_bigquery(html_data.url, label)
         except InvalidMessageException as ex:
             self._logger.warning("Invalid message : %s", ex)
         except Exception as ex:
@@ -64,12 +66,17 @@ class Callback(object):
             label(str): Site label.
         """
         self._pubsub_client.publish(
-            config.TOPIC, url, attribute={"label": label})
-
-    def store_to_bigquery(self, url, label):
-        """BigQueryに判定結果を保存する"""
-        # XXX BigQuery client shoud be inject by constructor.
-        pass
+            config.TOPIC, url, attribute={"label": label}
+        )
 
     def _extract_tags_from_dom(self, dom, tags):
         return list(filter(lambda d: d["name"] in tags, dom))
+
+    def _store_to_bigquery(self, url, label):
+        """Store results of judge to bigquery
+
+        Args:
+            url(str): Site url.
+            label(str): Site label.
+        """
+        self._bigquery_client.insert_judge_result(url, label)
