@@ -48,3 +48,6 @@ class ReceivedMessage(object):
         if len(errs) != 0:
             msg = ";".join(errs)
             raise exceptions.InvalidMessageException(msg)
+
+    def __str__(self):
+        return "URL: {}, DOMS: {}".format(self.url, self.doms)
